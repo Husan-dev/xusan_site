@@ -16,7 +16,7 @@
 
         .contact-form { display: flex; flex-direction: column; gap: 20px; }
         .input-block { display: flex; flex-direction: column; gap: 8px; width: 100%; }
-        .input-block label { color: var(--cyan); font-size: 0.9rem; font-weight: 500; margin-left: 5px; }
+        .input-block label { color: var(--accent); font-size: 0.9rem; font-weight: 500; margin-left: 5px; }
         .contact-form input, .contact-form textarea {
             width: 100%; padding: 12px 15px; background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;
@@ -24,14 +24,20 @@
             transition: all 0.3s ease; outline: none;
         }
         .contact-form input:focus, .contact-form textarea:focus {
-            border-color: var(--cyan); background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent); background: rgba(255, 255, 255, 0.08);
         }
         .btn-submit {
-            width: 100%; padding: 16px; background: var(--cyan);
-            color: #000; border: none; border-radius: 8px;
+            width: 100%; padding: 16px; background: var(--grad);
+            color: #ffffff; border: none; border-radius: 12px;
             font-weight: 800; font-size: 1.1rem; text-transform: uppercase;
             cursor: pointer; margin-top: 15px; transition: all 0.3s ease;
-            box-shadow: 0 4px 15px var(--cyan);
+            box-shadow: 0 4px 20px rgba(0, 210, 255, 0.35);
+            letter-spacing: 1px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 210, 255, 0.5);
+            filter: brightness(1.1);
         }
     </style>
 </head>
@@ -59,7 +65,7 @@
     <div class="container hero-grid">
         {% for i in about %}
         <div class="hero-left">
-            <div class="status-badge"><span class="pulse"></span> <span data-key="status"></span></div>
+            <div class="status-badge"><span class="pulse"></span> <span data-key="status">Yangi loyihalarga ochiq</span></div>
             <h1 id="hero-title">Salom, men <br><span class="cyan">Husan Raxmatullayev</span> <br><span class="typing-text" id="type-text"></span></h1>
             <p class="desc" data-key="hero-desc">{{ i.body }}</p>
             <div class="code-terminal">
@@ -124,14 +130,17 @@
     <div class="section-header"><h2 class="cyan" data-key="serv-title">Mening yo'nalishlarim</h2></div>
     <div class="services-grid">
         {% for i in service %}
-        <div class="service-card"><i class="ri-server-line"></i>
+        <div class="service-card">
+            <i class="ri-server-line"></i>
             <h3 data-key="serv-1-h">{{ i.title }}</h3>
-            <p data-key="serv-1-p">{{ i.description }}</p></div>
-        <div class="service-card"><i class="ri-robot-2-line"></i>
+            <p data-key="serv-1-p">{{ i.description }}</p>
+        </div>
+        <div class="service-card">
+            <i class="ri-robot-2-line"></i>
             <h3 data-key="serv-2-h">{{ i.title2 }}</h3>
-            <p data-key="serv-2-p">{{ i.description2 }}</p></div>
-        <div class="service-card soon">
-            <div class="soon-badge"><span class="dot-flashing"></span> <span data-key="soon">Soon</span></div>
+            <p data-key="serv-2-p">{{ i.description2 }}</p>
+        </div>
+        <div class="service-card">
             <i class="ri-code-s-slash-line"></i>
             <h3 data-key="serv-3-h">{{ i.title3 }}</h3>
             <p data-key="serv-3-p">{{ i.description3 }}</p>
@@ -152,12 +161,10 @@
             <div class="project-info">
                 <div class="project-tags">{% for tag in project.get_tags_list %}<span>{{ tag }}</span>{% endfor %}</div>
                 <h3>{{ project.title }}</h3>
-
                 <div class="project-desc-wrapper">
                     <p class="desc-uz">{{ project.description_uz }}</p>
                     <p class="desc-en" style="display: none;">{{ project.description_en }}</p>
                 </div>
-
                 <div class="project-links"><a href="{{ project.github_link }}"><i class="ri-github-line"></i> Code</a></div>
             </div>
         </div>
@@ -201,7 +208,7 @@
             "btn-connect": "Bog'lanish", "status": "Yangi loyihalarga ochiq", "hero-desc": "Murakkab tizimlar, API-lar va xavfsiz backend arxitekturasi yaratuvchisi.",
             "skills-title": "Texnik mahoratlarim", "serv-title": "Mening yo'nalishlarim", "serv-1-h": "Backend Development", "serv-1-p": "Django va FastAPI yordamida server qismini yaratish.",
             "serv-2-h": "Telegram Botlar", "serv-2-p": "To'lov tizimlariga ulangan murakkab botlar yaratish.", "serv-3-h": "REST API Integratsiya", "serv-3-p": "Tashqi xizmatlar bilan integratsiya qilish xizmati.",
-            "port-title": "Saralangan loyihalar", "view-btn": "Ko'rish", "soon": "Soon", "cont-title": "Bog'lanish uchun", "cont-phone": "Telefon", "btn-send": "Yuborish",
+            "port-title": "Saralangan loyihalar", "view-btn": "Ko'rish", "cont-title": "Bog'lanish uchun", "cont-phone": "Telefon", "btn-send": "Yuborish",
             "stat-exp": "Yillik tajriba", "stat-proj": "Tugallangan loyihalar", "stat-tech": "Backend texnologiyalar", "stat-client": "Mamnun mijozlar",
             "p-name": "Ismingiz", "p-surname": "Familiyangiz", "p-tel": "Telefon raqamingiz", "p-msg": "Xabaringiz",
             "types": ["Backend Dasturchi", "Telegram Bot Creator", "API Expert"]
@@ -211,7 +218,7 @@
             "btn-connect": "Contact Me", "status": "Open to new projects", "hero-desc": "Creator of complex systems, APIs, and secure backend architecture.",
             "skills-title": "Technical Skills", "serv-title": "My Expertise", "serv-1-h": "Backend Development", "serv-1-p": "Building server-side applications using Django and FastAPI.",
             "serv-2-h": "Telegram Bots", "serv-2-p": "Creating complex bots integrated with payment systems.", "serv-3-h": "REST API Integration", "serv-3-p": "Perfect integration service with third-party services.",
-            "port-title": "Featured Projects", "view-btn": "View", "soon": "Soon", "cont-title": "Contact Me", "cont-phone": "Phone", "btn-send": "Send Message",
+            "port-title": "Featured Projects", "view-btn": "View", "cont-title": "Contact Me", "cont-phone": "Phone", "btn-send": "Send Message",
             "stat-exp": "Years Experience", "stat-proj": "Projects Completed", "stat-tech": "Technologies", "stat-client": "Happy Clients",
             "p-name": "First Name", "p-surname": "Last Name", "p-tel": "Phone Number", "p-msg": "Your Message",
             "types": ["Backend Developer", "Telegram Bot Creator", "API Expert"]
@@ -222,32 +229,24 @@
     langBtn.addEventListener('click', () => {
         currentLang = currentLang === 'uz' ? 'en' : 'uz';
         langBtn.innerText = currentLang === 'uz' ? 'EN' : 'UZ';
-
-        // Matnlarni almashtirish
         document.querySelectorAll('[data-key]').forEach(el => {
             const key = el.getAttribute('data-key');
-            if(translations[currentLang][key]) el.innerText = translations[currentLang][key];
+            if (translations[currentLang][key]) el.innerText = translations[currentLang][key];
         });
-
-        // LOYIHA TAVSIFINI ALMASHTIRISH (DINAMIK)
         document.querySelectorAll('.project-desc-wrapper').forEach(wrapper => {
             const uz = wrapper.querySelector('.desc-uz');
             const en = wrapper.querySelector('.desc-en');
-            if (currentLang === 'en') {
-                uz.style.display = 'none';
-                en.style.display = 'block';
-            } else {
-                uz.style.display = 'block';
-                en.style.display = 'none';
-            }
+            if (currentLang === 'en') { uz.style.display = 'none'; en.style.display = 'block'; }
+            else { uz.style.display = 'block'; en.style.display = 'none'; }
         });
-
         const title = document.getElementById('hero-title');
-        title.innerHTML = currentLang === 'en' ? `Hi, I'm <br><span class="cyan">Husan Raxmatullayev</span> <br><span class="typing-text" id="type-text"></span>` : `Salom, men <br><span class="cyan">Husan Raxmatullayev</span> <br><span class="typing-text" id="type-text"></span>`;
+        title.innerHTML = currentLang === 'en'
+            ? `Hi, I'm <br><span class="cyan">Husan Raxmatullayev</span> <br><span class="typing-text" id="type-text"></span>`
+            : `Salom, men <br><span class="cyan">Husan Raxmatullayev</span> <br><span class="typing-text" id="type-text"></span>`;
     });
 
     const savedTheme = localStorage.getItem('theme') || 'default';
-    if(savedTheme !== 'default') document.body.classList.add(savedTheme);
+    if (savedTheme !== 'default') document.body.classList.add(savedTheme);
     const themeBtn = document.getElementById('theme-toggle');
     const themes = ['default', 'theme-indigo', 'theme-purple'];
     let themeIdx = themes.indexOf(savedTheme);
@@ -255,7 +254,7 @@
         document.body.classList.remove(...themes);
         themeIdx = (themeIdx + 1) % themes.length;
         const newTheme = themes[themeIdx];
-        if(newTheme !== 'default') document.body.classList.add(newTheme);
+        if (newTheme !== 'default') document.body.classList.add(newTheme);
         localStorage.setItem('theme', newTheme);
     });
 
@@ -264,18 +263,21 @@
         const words = translations[currentLang].types;
         const currentWord = words[typeIdx];
         const display = isDeleting ? currentWord.substring(0, charIdx--) : currentWord.substring(0, charIdx++);
-        document.getElementById('type-text').textContent = display;
+        const el = document.getElementById('type-text');
+        if (el) el.textContent = display;
         if (!isDeleting && charIdx > currentWord.length) { isDeleting = true; setTimeout(type, 2000); }
         else if (isDeleting && charIdx < 0) { isDeleting = false; typeIdx = (typeIdx + 1) % words.length; setTimeout(type, 500); }
         else { setTimeout(type, isDeleting ? 50 : 150); }
     }
     type();
 
-    window.onscroll = function() {
+    window.onscroll = function () {
         let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         document.getElementById("scroll-progress").style.width = (winScroll / height) * 100 + "%";
-        document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight / 1.1) el.classList.add('active'); });
+        document.querySelectorAll('.reveal').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight / 1.1) el.classList.add('active');
+        });
     };
 </script>
 </body>
